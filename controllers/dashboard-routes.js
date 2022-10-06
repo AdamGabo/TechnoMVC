@@ -16,7 +16,7 @@ router.get('/', withAuth, (req, res) => {
     attributes: [
         'id',
         'title',
-        'post_content',
+        'post_url',
         'created_at'
     ],
     include: [
@@ -53,7 +53,7 @@ router.get('/create/', withAuth, (req, res) => {
     attributes: [
       'id',
       'title',
-      'post_content',
+      'post_url',
       'created_at'
     ],
     include: [
@@ -97,7 +97,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
     attributes: [
       'id',
       'title',
-      'post_content',
+      'post_url',
       'created_at'
     ],
     include: [
@@ -133,3 +133,10 @@ router.get('/edit/:id', withAuth, (req, res) => {
 });
 
 module.exports = router;
+
+//YE
+
+
+
+
+
