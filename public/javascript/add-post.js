@@ -1,4 +1,4 @@
-//From Module 14 code 
+//From Module 14 code, examples used thoughout js code folder
 async function newFormHandler(event) {
   event.preventDefault();
 

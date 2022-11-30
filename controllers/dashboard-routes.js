@@ -5,28 +5,17 @@ const sequelize = require('../config/connection');
 const { Post, User, Comment, Vote } = require('../models');
 const withAuth = require('../utils/auth');
 
-// get all posts for dashboard
 router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
   Post.findAll({
-    where: {
-      user_id: req.session.user_id
-    },
-    attributes: [
-        'id',
-        'title',
-        'post_url',
-        'created_at'
-    ],
+    where: {user_id: req.session.user_id},
+    attributes: ['id','title','post_url','created_at'],
     include: [
       {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
+        include: {model: User,attributes: ['username']}
       },
       {
         model: User,
@@ -34,8 +23,8 @@ router.get('/', withAuth, (req, res) => {
       }
     ]
   })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
+    .then(db => {
+      const posts = db.map(post => post.get({ plain: true }));
       res.render('dashboard', { posts, loggedIn: true });
     })
     .catch(err => {
@@ -44,18 +33,12 @@ router.get('/', withAuth, (req, res) => {
     });
 });
 
-//get all created posts similiar to code above 
 router.get('/create/', withAuth, (req, res) => {
   Post.findAll({
     where: {
       user_id: req.session.user_id
     },
-    attributes: [
-      'id',
-      'title',
-      'post_url',
-      'created_at'
-    ],
+    attributes: ['id','title','post_url','created_at'],
     include: [
       {
         model: Comment,
@@ -71,10 +54,10 @@ router.get('/create/', withAuth, (req, res) => {
       }
     ]
   })
-    .then(dbPostData => {
-      if (dbPostData) {
+    .then(db => {
+      if (db) {
         //same as above example 
-        const posts = dbPostData.map(post => post.get({ plain: true }));
+        const posts = db.map(post => post.get({ plain: true }));
         res.render('create-post', {
           posts,
           loggedIn: true
@@ -115,9 +98,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
       }
     ]
   })
-    .then(dbPostData => {
-      if (dbPostData) {
-        const post = dbPostData.get({ plain: true });
+    .then(db => {
+      if (db) {
+        const post = db.get({ plain: true });
         
         res.render('edit-post', {
           post,
