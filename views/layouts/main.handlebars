@@ -10,16 +10,16 @@
 
   <div class="wrapper">
     <header>
-        <h1 class="has-text-black px-3 py-3">TECHNO MVC</h1>
-        <nav class="navbar mt-2">
+        <h1 class="title">TECHNO MVC</h1>
+        <nav class="nav">
             {{#if loggedIn}}
-            <a href="/" class="navbar-item is-hoverable pt-1">HOMEPAGE</a>
-            <a href="/dashboard" class="navbar-item is-hoverable pt-1">DASHBOARD</a>
-            <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 mr-4">CREATE A POST</a>
-            <button id="logout" class="button is-danger">LOGOUT</button>
+            <a href="/" class="nav">HOMEPAGE</a>
+            <a href="/dashboard" class="nav">DASHBOARD</a>
+            <a href="/dashboard/create/" class="nav">CREATE A POST</a>
+            <button id="logout" class="button">LOGOUT</button>
             {{else}}
-            <a href="/" class="navbar-item is-hoverable pt-1">HOMEPAGE</a>
-            <a href="/login" class="button is-primary">LOGIN</a>
+            <a href="/" class="nav">HOMEPAGE</a>
+            <a href="/login" class="button">LOGIN</a>
             {{/if}}
         </nav>
     </header>
@@ -28,8 +28,8 @@
             {{{ body }}}
     </main>
 
-    <footer class="footer rows pb-2">
-        <div class="row-is-full content has-text-centered">
+    <footer class="footer">
+        <div class="row">
             <p>
             <a href="/">HOMEPAGE</a>{{#if loggedIn}} | 
             <a href="/dashboard/">DASHBOARD</a> | 
@@ -39,7 +39,7 @@
             {{/if}}
             </p>
         </div>
-      <div class="row-is-full content has-text-centered">
+      <div class="row">
     <p>
       <strong>TECHNO MVC</strong> 
       <a href="https://github.com/AdamGabo/TechnoMVC"><i class="fab fa-github"></i></a> |  
